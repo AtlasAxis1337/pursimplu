@@ -787,3 +787,35 @@ img, iframe { max-width: 100%; }
   #gate .box{ padding: 24px 18px; }
   #gate .box img{ width: 96px !important; }
 }
+
+/* ===== Conformitate legală: SAL + date firmă ===== */
+.legal-bar{
+  display:flex; align-items:center; justify-content:center; gap:22px;
+  flex-wrap:wrap; padding:22px 0 4px;
+}
+.sal-badge{ display:inline-block; line-height:0; transition:.2s; border-radius:6px; }
+.sal-badge:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(43,43,40,.14); }
+.sal-badge img{ width:250px; height:50px; display:block; }
+
+.legal-box{
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; padding:18px 20px; margin-top:26px; font-size:12.5px; line-height:1.7;
+}
+.legal-box h6{
+  margin:0 0 10px; font-size:11px; text-transform:uppercase; letter-spacing:1px;
+  color:#fff; font-weight:700;
+}
+.legal-box .lg-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:6px 26px; }
+.legal-box .lg-grid div span{ color:#8e948a; }
+.legal-box .lg-grid div b{ color:#cfd4c8; font-weight:600; }
+.legal-links{ display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px;
+  padding-top:14px; border-top:1px solid rgba(255,255,255,.1); }
+.legal-links a{ display:inline !important; padding:0 !important; font-size:12.5px; }
+
+@media(max-width:720px){
+  .legal-bar{ gap:14px; padding:18px 0 2px; }
+  .sal-badge img{ width:210px; height:42px; }
+  .legal-box{ padding:15px 14px; font-size:12px; }
+  .legal-box .lg-grid{ grid-template-columns:1fr; gap:4px; }
+  .legal-links{ gap:6px 14px; }
+}
