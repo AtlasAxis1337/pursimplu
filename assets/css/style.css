@@ -614,3 +614,176 @@ img, iframe { max-width: 100%; }
   .prod .thumb{ height: 120px; }
   .sec-head h2{ font-size: 19px; }
 }
+/* ==========================================================================
+   PUR&simplu — PATCH MOBIL v2
+   Se adaugă la FINALUL fișierului assets/css/style.css, după patch-ul v1.
+   Repară: cardurile de avantaje (card-în-card) + tot panoul de admin pe mobil.
+   ========================================================================== */
+
+/* ==========================================================================
+   A. FIX GLOBAL — elementele de grilă nu mai împing pagina în lateral
+   ========================================================================== */
+.usp > div, .stats > div, .cat-grid > div, .prod-grid > article,
+.card, .panel, .admin-main, .admin-wrap, .shop-layout > *{ min-width: 0; }
+.tbl-scroll{ max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ==========================================================================
+   B. FIX "CARD ÎN CARD" la cele 4 avantaje
+   Cauza: regula .usp div se aplica şi div-ului interior (titlu + descriere).
+   Soluţie: stilul rămâne doar pe copilul direct, interiorul se resetează.
+   ========================================================================== */
+.usp > div > div{
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.usp > div > div > b{ display: block; margin-bottom: 2px; }
+.usp > div > div > span{ display: block; }
+
+/* ==========================================================================
+   C. AVANTAJE — aşezare curată pe mobil
+   ========================================================================== */
+@media (max-width: 720px){
+  .usp{ grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0; }
+  .usp > div{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left;
+    gap: 8px;
+    padding: 14px 13px;
+    border-radius: 12px;
+  }
+  .usp > div > .e{ font-size: 24px; line-height: 1; }
+  .usp > div > div > b{ font-size: 13px; line-height: 1.3; }
+  .usp > div > div > span{ font-size: 11.5px; line-height: 1.45; }
+}
+@media (max-width: 420px){
+  .usp{ grid-template-columns: 1fr; }
+  .usp > div{ flex-direction: row !important; align-items: center !important; gap: 12px; }
+}
+
+/* ==========================================================================
+   D. ADMIN PE MOBIL — meniul devine bară orizontală sus
+   ========================================================================== */
+@media (max-width: 900px){
+
+  .admin-wrap{ display: block; min-height: 100vh; }
+
+  /* --- meniul lateral devine bară fixă sus, cu scroll orizontal --- */
+  .side{
+    position: sticky; top: 0; z-index: 80;
+    height: auto; width: 100%;
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 12px;
+    overflow-x: auto; overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  }
+  .side::-webkit-scrollbar{ display: none; }
+
+  .side .brand{
+    border: 0; margin: 0 6px 0 0; padding: 0 10px 0 0; font-size: 14px;
+    flex: 0 0 auto; gap: 8px;
+    border-right: 1px solid rgba(255,255,255,.14);
+  }
+  .side .brand img{ width: 30px !important; height: 30px !important; }
+
+  .side .sep{ display: none; }          /* etichetele de grup ocupă prea mult */
+
+  .side a{
+    flex: 0 0 auto; margin: 0;
+    padding: 9px 14px; font-size: 13px; border-radius: 30px;
+    background: rgba(255,255,255,.07);
+  }
+  .side a.active{ background: var(--green); }
+  .side a span.chip{ margin-left: 6px !important; }
+
+  /* --- conţinutul principal --- */
+  .admin-main{ padding: 18px 14px 60px; }
+  .admin-top{ margin-bottom: 18px; }
+  .admin-top h1{ font-size: 22px; }
+  .admin-top p{ font-size: 12.5px; }
+  .admin-top > div:last-child{ width: 100%; flex-wrap: wrap; }
+
+  /* --- statistici: 2 pe rând, fără depăşire --- */
+  .stats{ grid-template-columns: 1fr 1fr !important; gap: 10px; margin-bottom: 18px; }
+  .stat{ padding: 14px 12px; gap: 10px; }
+  .stat .e{ width: 38px; height: 38px; font-size: 18px; flex: 0 0 auto; }
+  .stat > div{ min-width: 0; }
+  .stat b{ font-size: 19px; }
+  .stat span{ font-size: 11px; display: block; line-height: 1.35; }
+
+  /* --- carduri şi grafice --- */
+  .card{ padding: 16px 14px; }
+  .card .ch{ gap: 10px; }
+  .card .ch h3{ font-size: 15.5px; }
+  .dash-row{ grid-template-columns: 1fr !important; }
+  .mini-in{ min-width: 0; width: 100%; }
+  .card .ch > input.mini-in{ width: 100%; }
+  .bars{ height: 140px; }
+
+  /* --- butoanele de filtrare (Toate / Nouă / În preparare…) --- */
+  .card .ch > div:first-child{
+    display: flex; gap: 7px; overflow-x: auto; flex-wrap: nowrap !important;
+    max-width: 100%; padding-bottom: 4px; scrollbar-width: none;
+  }
+  .card .ch > div:first-child::-webkit-scrollbar{ display: none; }
+  .card .ch > div:first-child .btn{ flex: 0 0 auto; }
+
+  /* --- tabele: scroll orizontal propriu, cu indiciu vizual --- */
+  .tbl-scroll{
+    margin: 0 -14px; padding: 0 14px; width: calc(100% + 28px);
+  }
+  table.tb{ min-width: 700px; font-size: 12.5px; }
+  table.tb th{ font-size: 10px; padding: 9px 8px; }
+  table.tb td{ padding: 10px 8px; }
+  .oe-thumb{ width: 34px; height: 34px; }
+  .mini-thumbs img{ width: 24px; height: 24px; }
+  table.tb .btn-sm{ padding: 6px 10px; font-size: 12px; }
+  table.tb select.mini-in{ min-width: 120px !important; font-size: 12.5px; }
+  table.tb input.mini-in{ width: 70px !important; min-width: 0 !important; }
+
+  /* --- pagina Stocuri: coloana de ajustare nu se mai rupe --- */
+  table.tb .qty{ vertical-align: middle; }
+  table.tb .qty + input.mini-in{ margin-left: 6px !important; }
+
+  /* --- ferestre modale (editare produs, comandă, voucher) --- */
+  .modal{ padding: 10px; align-items: start; }
+  .modal .box, .modal .box.wide{
+    max-width: 100%; padding: 20px 16px; border-radius: 14px; margin: 10px auto;
+  }
+  .modal .box h3{ font-size: 18px; padding-right: 36px; }
+  .modal .box .sub{ font-size: 12.5px; margin-bottom: 16px; }
+  .grid2, .grid3{ grid-template-columns: 1fr !important; gap: 12px; }
+  .oe-add{ grid-template-columns: 1fr !important; }
+  .oe-add .btn{ width: 100%; }
+
+  /* butoanele de status din fereastra comenzii */
+  .modal .box > div[style*="flex-wrap"]{ gap: 6px !important; }
+  .modal .box .btn-sm{ font-size: 12px; padding: 7px 12px; }
+
+  /* --- setări --- */
+  .card[style*="max-width"]{ max-width: 100% !important; }
+}
+
+/* --- ecrane foarte mici: statistici pe un singur rând --- */
+@media (max-width: 420px){
+  .stats{ grid-template-columns: 1fr !important; }
+  .stat{ padding: 13px; }
+  .side .brand span, .side .brand{ font-size: 13px; }
+  .admin-top h1{ font-size: 20px; }
+}
+
+/* ==========================================================================
+   E. Ecranul de login al adminului
+   ========================================================================== */
+@media (max-width: 720px){
+  #gate .box{ padding: 24px 18px; }
+  #gate .box img{ width: 96px !important; }
+}
