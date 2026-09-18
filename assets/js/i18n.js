@@ -1,13 +1,12 @@
 /* ===== PUR&simplu – i18n RO / EN ===== */
 const I18N = {
   ro:{
-    tb_ship:'Livrare gratuită la comenzi peste 200 lei',
     tb_hours:'Marți–Vineri 09:00–20:00 · Sâmbătă–Duminică 09:00–15:00', tb_phone:'0721 071 027',
     tagline:'Băcănie contemporană',
     search_ph:'Caută produse, categorii, producători…', account:'Contul meu', login:'Autentificare', hi:'Salut',
     cart:'Coș', admin:'Admin', logout:'Ieșire', orders:'Comenzile mele', profile:'Profil',
     nav_cats:'Toate categoriile', nav_home:'Acasă', nav_shop:'Magazin', nav_offers:'Oferte', nav_new:'Noutăți',
-    nav_about:'Despre noi', nav_contact:'Contact', free_del:'Livrare gratuită peste 200 lei',
+    nav_about:'Despre noi', nav_contact:'Contact', 
     hero_kick:'Băcănie contemporană • Tunari, Ilfov', hero_h1:'Mâncare bună, fără complicații.',
     hero_p:'Produse de la producători mici din România, alese una câte una. Comandă până la ora 18:00 și primești coșul în aceeași zi.',
     hero_cta:'Cumpără acum', hero_cta2:'Vezi ofertele',
@@ -62,13 +61,12 @@ const I18N = {
     logged_out:'Te-ai deconectat', need_login:'Autentifică-te pentru a continua', removed:'Produs eliminat'
   },
   en:{
-    tb_ship:'Free delivery on orders over 200 lei',
     tb_hours:'Tue–Fri 09:00–20:00 · Sat–Sun 09:00–15:00', tb_phone:'0721 071 027',
     tagline:'Contemporary grocery',
     search_ph:'Search products, categories, producers…', account:'My account', login:'Sign in', hi:'Hi',
     cart:'Cart', admin:'Admin', logout:'Sign out', orders:'My orders', profile:'Profile',
     nav_cats:'All categories', nav_home:'Home', nav_shop:'Shop', nav_offers:'Deals', nav_new:'New in',
-    nav_about:'About us', nav_contact:'Contact', free_del:'Free delivery over 200 lei',
+    nav_about:'About us', nav_contact:'Contact',
     hero_kick:'Contemporary grocery • Tunari, Ilfov', hero_h1:'Good food, no fuss.',
     hero_p:'Products from small Romanian producers, picked one by one. Order before 6 PM and get your basket the same day.',
     hero_cta:'Shop now', hero_cta2:'See deals',
